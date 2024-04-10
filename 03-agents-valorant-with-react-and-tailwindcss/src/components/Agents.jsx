@@ -93,8 +93,8 @@ const Agents = () => {
                 {/* AGENT ABILITYS SECTION */}
                 {agent?.abilities.map((abil, idx) => (
                   <div className="flex flex-col gap-2 justify-center items-center" key={idx}>
-                    <img className="w-9 hover:scale-125 duration-200 cursor-pointer" src={abil?.displayIcon !== null ? abil?.displayIcon : valoBanner} alt="abilityIcons" />
-                    <p className="text-xs">{abil?.slot}</p>
+                    <img className="w-6 hover:scale-125 duration-200 cursor-pointer" src={abil?.displayIcon !== null ? abil?.displayIcon : valoBanner} alt="abilityIcons" />
+                    <p className="text-[10px]">{abil?.slot}</p>
                   </div>
                 ))}
               </div>
