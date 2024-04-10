@@ -1,79 +1,25 @@
-import { useState, useEffect } from "react"
-import axios from 'axios'
+import { useState } from "react"
+import Agents from "./components/Agents"
+import Header from "./components/Header"
+import Footer from "./components/Footer";
+import ScrollToTop from "react-scroll-to-top";
+import { FaArrowUp } from "react-icons/fa";
 
 function App() {
-
-  const [agents, setAgents] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState("")
-
-
-  useEffect(() => {
-    let abortController = new AbortController()
-
-    const loadAgent = async () => {
-      try {
-        setLoading(true)
-        let res = await axios.get("https://valorant-api.com/v1/agents", { signal: abortController.signal })
-        setAgents(res.data)
-        setError("")
-      } catch (error) {
-        setError("Something went wrong!", error)
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    loadAgent()
-
-  }, [])
-
-  console.log(agents);
-
-  const playabledAgents = agents?.data?.filter((agent) => {
-    return agent?.isPlayableCharacter === true
-  })
-
-  console.log(playabledAgents);
-
-  // fetch data from jsonplaceholder/post api
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const res = await fetch(`https://valorant-api.com/v1/agents`)
-  //       const data = await res.json()
-  //       setAgents(data)
-  //     } catch (error) {
-  //       console.error(error)
-  //     } finally {
-  //       setLoading(false)
-  //     }
-  //   }
-
-  //   fetchData()
-  // },)
-
-
+  const [darkMode, setDarkMode] = useState(false)
   return (
     <>
-      <div className="container mx-auto flex flex-col items-center justify-center">
-        <h1>Valorant Agents</h1>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {playabledAgents?.map((agent, index) => (
-            <div
-            className="bg-gradient-to-tr from-rose-500 to-rose-200 flex flex-col items-center p-5 rounded-lg" 
-            key={index}>
-              <img className="w-1/3" src={agent?.displayIcon} alt="" />
-              <h2>{agent?.displayName}</h2>
-              <p>{agent?.description}</p>
-              <div className="flex items-center gap-4">
-                <img
-                  className="w-1/6 bg-gray-500 rounded-lg"
-                  src={agent?.role?.displayIcon} alt="" />
-                <p>{agent?.role?.displayName}</p>
-              </div>
-            </div>
-          ))}
+      <div className={darkMode && "dark"}>
+        <div className="bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-all duration-300">
+          <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+          <Agents />
+          <Footer />
+          <ScrollToTop
+            smooth
+            color="white"
+            width="20"
+            component={<FaArrowUp />}
+            className="flex items-center justify-center bg-gradient-to-br from-orange-500 to-rose-400 shadow-md shadow-black/50 hover:scale-110 duration-200 px-2 text-white text-2xl" />
         </div>
       </div>
     </>
