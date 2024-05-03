@@ -26,13 +26,13 @@ const Header = ({ darkMode, setDarkMode }) => {
   ];
 
   return (
-    <header className="bg-lime-200 dark:bg-gray-900 text-gray-900 dark:text-white transition-all duration-300 !scroll-smooth">
+    <header className="bg-lime-200 dark:bg-gray-900 text-gray-900 dark:text-white duration-300 border-b-4 border-b-orange-500 dark:border-b-green-500">
       <div className="container mx-auto">
         {/* LINK NAD  */}
-        <div className="flex justify-evenly md:justify-between items-center mx-auto h-24 px-4">
+        <div className="flex justify-around md:justify-between items-center mx-auto h-24"> 
           <h1 className="text-xl font-bold uppercase">
             <div className="flex items-center justify-between">
-              <span className="px-4">🍉</span> <Typing text={['BMI Calculator']} speed={100} />
+              <p>🍉 BMI Calculator</p>
             </div>
           </h1>
           <ul className="hidden md:flex uppercase items-center justify-center">
@@ -94,8 +94,8 @@ const Header = ({ darkMode, setDarkMode }) => {
           >
             <div className="flex items-center justify-between px-5">
               <div className="">
-                <h1 className="text-3xl font-bold primary-color m-4 uppercase">
-                  sarit
+                <h1 className="text-lg font-bold primary-color m-4 uppercase">
+                  <p>🍉 BMI Calculator</p>
                 </h1>
               </div>
               {/* DARKMODE SECTION */}
